@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# # Get environment - defaults to 'development' for local work
+# ENVIRONMENT = os.environ.get('DJANGO_ENVIRONMENT', 'development')
+
+# if ENVIRONMENT == 'production':
+#     # In production, these MUST be set as environment variables
+#     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  # Will raise KeyError if not set
+#     DEBUG = False  # Always False in production
+# else:
+#     # Development fallbacks
+#     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-94+6orem9k^x4@6gc8+!ukyxsx-7)uh&uf!z8d2@o2e07k^%d#')
+#     DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+
+ENVIRONMENT = 'production'
 SECRET_KEY = 'django-insecure-94+6orem9k^x4@6gc8+!ukyxsx-7)uh&uf!z8d2@o2e07k^%d#'
+DEBUG = False
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'oncobot-onboarding.azurewebsites.net',  # Your Azure Web App domain
+    '169.254.129.2',  # Azure internal services
+    'localhost',  # For local development
+    '127.0.0.1',  # For local development
+]
 
 
 # Application definition

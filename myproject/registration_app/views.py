@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import UserRegistrationForm
 import requests
 import json
+import os
 
 LANGUAGE_CODES = {
     "English": "en",
@@ -43,9 +44,10 @@ def register_user(request):
             print(api_body)
 
             try:
+                # Use environment variable or default to production API
+                api_url = os.environ.get('API_ENDPOINT', 'https://oncobot-h7fme6hue9f7buds.canadacentral-01.azurewebsites.net/register_users')
                 response = requests.post(
-                    # "https://oncobot-h7fme6hue9f7buds.canadacentral-01.azurewebsites.net/register_users",
-                    "http://localhost:5000/register_users",
+                    api_url,
                     headers={"Content-Type": "application/json"},
                     data=api_body
                 )
