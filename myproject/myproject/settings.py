@@ -30,11 +30,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #     DEBUG = False  # Always False in production
 # else:
 #     # Development fallbacks
-#     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-94+6orem9k^x4@6gc8+!ukyxsx-7)uh&uf!z8d2@o2e07k^%d#')
+#     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #     DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ENVIRONMENT = 'production'
-SECRET_KEY = 'django-insecure-94+6orem9k^x4@6gc8+!ukyxsx-7)uh&uf!z8d2@o2e07k^%d#'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 ALLOWED_HOSTS = [
