@@ -44,6 +44,12 @@ ALLOWED_HOSTS = [
     '127.0.0.1',  # For local development
 ]
 
+# CSRF settings for Azure deployment
+CSRF_TRUSTED_ORIGINS = [
+    'https://oncobot-onboarding.azurewebsites.net',
+    'https://*.azurewebsites.net',  # Covers any Azure subdomain variations
+]
+
 
 # Application definition
 
@@ -138,3 +144,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Azure-specific settings
+if ENVIRONMENT == 'production':
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = False  # Azure handles SSL termination
+    USE_X_FORWARDED_HOST = True
+    USE_X_FORWARDED_PORT = True
