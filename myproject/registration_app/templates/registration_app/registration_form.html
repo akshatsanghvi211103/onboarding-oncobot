@@ -25,6 +25,29 @@
             color: red;
             font-weight: bold;
         }
+        .phone-input-container {
+            position: relative;
+        }
+        .phone-prefix {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: bold;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .phone-input {
+            padding-left: 50px !important;
+        }
+        /* Make DOB, phone number, and full name fields shorter */
+        #id_date_of_birth,
+        #id_phone_number,
+        #id_full_name {
+            max-width: 250px !important;
+            width: 250px !important;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +59,14 @@
             {% for field in form %}
                 <div class="form-group">
                     {{ field.label_tag }}<br>
-                    {{ field }}
+                    {% if field.name == 'phone_number' %}
+                        <div class="phone-input-container">
+                            <span class="phone-prefix">+91</span>
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                     {% if field.errors %}
                         <div class="error">{{ field.errors|striptags }}</div>
                     {% endif %}

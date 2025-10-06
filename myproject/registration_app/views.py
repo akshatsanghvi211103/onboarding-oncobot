@@ -17,15 +17,19 @@ def register_user(request):
             language = form.cleaned_data["language"]
             doctor_name = form.cleaned_data["doctor_name"]
             staff_name = form.cleaned_data["staff_name"]
-            if doctor_name == "Test Name":
-                doctor_number = "919739811075"
-            else:
-                doctor_number = "918123273694"
+            if doctor_name == "Dr Shirley":
+                doctor_number = "919969557231"
+            elif doctor_name == "Dr Salma":
+                doctor_number = "917034432034"
+            elif doctor_name == "Dr Umesh":
+                doctor_number = "918700105161"
 
-            if staff_name == "Test Name":
-                staff_number = "919739811075"
-            else:
-                staff_number = "918123273694"
+            if staff_name == "Dr Shirley":
+                staff_number = "919969557231"
+            elif staff_name == "Dr Salma":
+                staff_number = "917034432034"
+            elif staff_name == "Dr Umesh":
+                staff_number = "918700105161"
 
             # Map language to code
             language_code = LANGUAGE_CODES.get(language, "en")
