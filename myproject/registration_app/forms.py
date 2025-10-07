@@ -33,6 +33,7 @@ GENDER_CHOICES = [
 
 class UserRegistrationForm(forms.Form):
     full_name = forms.CharField(label="Full Name", max_length=100, required=True)
+    patient_id = forms.CharField(label="Patient ID", max_length=100, required=True)
     phone_number = forms.CharField(
         label="Phone Number (Whatsapp)", 
         max_length=20, 
