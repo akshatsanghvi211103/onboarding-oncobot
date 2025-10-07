@@ -13,16 +13,25 @@ def register_user(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            # Get form data
+            full_name = form.cleaned_data["full_name"]
+            patient_id = form.cleaned_data["patient_id"]
             phone_number = form.cleaned_data["phone_number"]
+            date_of_birth = form.cleaned_data["date_of_birth"]
+            gender = form.cleaned_data["gender"]
             language = form.cleaned_data["language"]
             doctor_name = form.cleaned_data["doctor_name"]
             staff_name = form.cleaned_data["staff_name"]
+            
+            # Map doctor names to phone numbers
             if doctor_name == "Dr Shirley":
                 doctor_number = "919969557231"
             elif doctor_name == "Dr Salma":
                 doctor_number = "917034432034"
             elif doctor_name == "Dr Umesh":
                 doctor_number = "918700105161"
+            else:
+                doctor_number = "919739811075"  # Default
 
             if staff_name == "Dr Shirley":
                 staff_number = "919969557231"
@@ -30,17 +39,37 @@ def register_user(request):
                 staff_number = "917034432034"
             elif staff_name == "Dr Umesh":
                 staff_number = "918700105161"
+            else:
+                staff_number = "919739811075"  # Default
 
             # Map language to code
             language_code = LANGUAGE_CODES.get(language, "en")
+            
+            # Calculate age if date of birth is provided
+            age = None
+            dob_str = None
+            if date_of_birth:
+                from datetime import date
+                today = date.today()
+                age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+                dob_str = date_of_birth.strftime("%Y-%m-%d")
 
-            # print("doctor", doctor_name, "name", staff_name , "staff")
-
+            # Create new API body structure
             api_body = json.dumps([{
                 "phone_number_id": phone_number,
+                "user_id": patient_id,
+                "user_name": full_name,
                 "user_language": language_code,
                 "user_type": "byoebuser",
-                "experts": {"byoebexpert": [doctor_number], "byoebexpert2": [staff_number]}
+                "patient_details": {
+                    "date_of_birth": dob_str,
+                    "gender": gender,
+                    "age": age,
+                },
+                "experts": {
+                    "byoebexpert": [doctor_number], 
+                    "byoebexpert2": [staff_number]
+                }
             }])
 
             # print()
