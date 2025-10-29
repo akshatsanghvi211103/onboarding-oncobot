@@ -15,9 +15,7 @@ DOCTOR_CHOICES = [
 
 STAFF_CHOICES = [
     ('Choose staff', 'Choose staff'),
-    ('Dr Shirley', 'Dr Shirley'),
-    ('Dr Salma', 'Dr Salma'),
-    ('Dr Umesh', 'Dr Umesh'),
+    ('Dr Shubha Nayak', 'Dr Shubha Nayak'),
 ]
 
 CONSENT_CHOICES = [

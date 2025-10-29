@@ -33,12 +33,12 @@ def register_user(request):
             else:
                 doctor_number = "919739811075"  # Default
 
-            if staff_name == "Dr Shirley":
-                staff_number = "919969557231"
-            elif staff_name == "Dr Salma":
-                staff_number = "917034432034"
-            elif staff_name == "Dr Umesh":
-                staff_number = "918700105161"
+            if staff_name == "Shubha Nayak":
+                staff_number = "917022488975"
+            # elif staff_name == "Dr Salma":
+            #     staff_number = "917034432034"
+            # elif staff_name == "Dr Umesh":
+            #     staff_number = "918700105161"
             else:
                 staff_number = "919739811075"  # Default
 
