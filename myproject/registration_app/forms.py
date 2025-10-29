@@ -43,7 +43,7 @@ class UserRegistrationForm(forms.Form):
     )
     # email = forms.EmailField(label="Email Address", required=False)
     date_of_birth = forms.DateField(
-        label="Date of Birth", 
+        label="Date of Birth (mm/dd/yyyy)", 
         widget=forms.DateInput(attrs={'type': 'date'}), 
         required=False
     )
